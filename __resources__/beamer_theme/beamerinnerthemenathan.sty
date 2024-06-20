@@ -1,0 +1,60 @@
+\mode<presentation>
+
+\setbeamertemplate{background}{
+  \begin{tikzpicture}
+  \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+  \fill[color=white] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+  \ifnum\thepage>1\relax%
+   \fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+   \fi
+  \end{tikzpicture}
+}
+\setbeamercolor{subtitle}{fg=black}%
+
+\setbeamerfont*{title}{size=\Huge, parent=structure}
+\setbeamerfont*{subtitle}{size=\Huge, parent=structure}
+
+% Title page
+\defbeamertemplate*{title page}{maravelias}[1][]
+{ 
+      
+
+      \begin{minipage}[b][\textheight]{\textwidth}
+         \begin{center}
+            \vskip2cm%
+             \begin{beamercolorbox}[center]{title page header}
+                  \usebeamerfont{title}\textbf{\inserttitle}\par%
+                \end{beamercolorbox}%
+                \vskip0.2cm%
+                \begin{beamercolorbox}[center]{subtitle}
+                  \usebeamerfont{subtitle}\textit{\insertsubtitle}\par%
+                \end{beamercolorbox}%
+                
+                \vskip1cm%
+                \begin{beamercolorbox}[center]{author}
+                  \usebeamerfont{author}\insertauthor%
+                \end{beamercolorbox}
+                 \vskip0.2cm%
+                \begin{beamercolorbox}[center]{date}
+                  \usebeamerfont{author}\insertdate%
+                \end{beamercolorbox}
+                \vfill
+              \textbf{Nathan Davis Barrett}
+              \vskip0.2cm
+        
+              \includegraphics[height=1.1 cm]{\beamer@themelocation/NLogo_New_Transparent.png}
+          \end{center}
+
+      \end{minipage}
+
+    % \vskip0.7cm%
+    
+    % \begin{beamercolorbox}[center]
+      
+    % \end{beamercolorbox}
+    
+  \vfill
+}
+
+\mode
+<all>
