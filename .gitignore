@@ -6,3 +6,4 @@
 *.gz
 *.toc
 *.bbl
+**/.ipynb_checkpoints/
