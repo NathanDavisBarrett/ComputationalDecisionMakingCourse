@@ -249,8 +249,8 @@
         \item Some solvers are used by professionals to game the stock market, manage the electrical grid, etc. Those solvers can be very expensive.
         \item Other solvers are free (but considerably slower). Those solvers should be suitable for what we'll do in this class.
         \item Each solver is limited to a certain style of problem: Linear, Quadratic, Mixed-Integer (Binary), Generic Nonlinear, etc.
-        \item Most of the problems we'll do in this class are "Mixed-Integer Linear". So we'll use the free "HiGHS"\footnote{https://highs.dev/} solver for what we do in this class.
-        \item If you followed the instructions from Lecture 02, the HiGHS solver should already be installed on your computer using the command "pip install highspy".
+        \item Most of the problems we'll do in this class are "Mixed-Integer Linear" or "Mixed-Integer Non-Linear". So we'll use the free "SCIP"\footnote{https://www.scipopt.org/} solver for what we do in this class.
+        \item If you followed the instructions at the end of Lecture 2, the SCIP solver should already be installed. If not, please visit https://www.scipopt.org/index.php\#download
     \end{itemize}
 \end{frame}
 
@@ -260,7 +260,7 @@
         \item Ideologically speaking, a solver acts on a model to find an optimal solution.
         \item A Pyomo solver must first be created:
         
-        \hspace{0.25cm} solver = pyo.SolverFactory("appsi\textunderscore highs")
+        \hspace{0.25cm} solver = pyo.SolverFactory("scip")
 
         \item The main argument to the SolverFactory function is the name of the solver. If you want to switch between solvers, all you need to do is type the name of a different solver here.
         \item Once a solver object has been created, it can act on a given model using the "solver.solve" function:
