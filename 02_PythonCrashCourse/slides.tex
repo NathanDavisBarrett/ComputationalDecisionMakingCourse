@@ -45,10 +45,8 @@
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{enumerate}
-                \item What is Python / Anaconda?
-                \item Installing Python (and necessary packages)
-                \item Writing your first Python code
-                \item Introduction to Jupyter Lab
+                \item What is Python / Google Colab?
+                \item Introduction to Google Colab
                 \item Key Python concepts
                 \begin{enumerate}
                     \item Variables (integers, floats, strings, lists)
@@ -74,7 +72,7 @@
     \textit{NOTE: Today's class might feel like a firehose. Don't worry if you don't perfectly grasp everything today. You'll have plenty of time to practice.}
 \end{frame}
 
-\begin{frame}[t]{What is Python / Anaconda?}
+\begin{frame}[t]{What is Python / Google Colab?}
     \begin{columns}[t]
         \begin{column}[t]{0.5\textwidth}
             What is Python?
@@ -85,76 +83,40 @@
             \end{itemize}
         \end{column}
         \begin{column}{0.5\textwidth}
-            What is Anaconda (a.k.a. "conda")?
+            What is Google Colab?
             \begin{itemize}
-                \item The Python language normally is used in conjunction with a bunch of pre-built packages that allow you to do a variety of things.
-                \item Anaconda is another computer program that helps you manage your installation / version of Python in addition to all the other libraries you may have installed.
-                \item One of the easiest ways to download, maintain, and get packages for Python is through Anaconda.
-                \item Anaconda comes with a bunch of extra bells and whistles that we con't need for this course. So we'll use a smaller version called "miniconda".
+                \item Google Colab is a website through which you want write and execute Python code.
+                \item While you can (and are welcome to) install Python on your own computer, it can become difficult to ensure that all the packages are installed and configured correctly across different Windows, Mac, etc. computers.
+                \item Google Colab handles all the installation in a (relatively) painless way.
             \end{itemize}
         \end{column}
     \end{columns}
+
+    \vspace{0.5cm}
+    If you do choose to install python on your own computer, I'd highly recommend the "Anaconda" installation and package management system. You can find more info here: https://www.anaconda.com/download
+
+    Please come talk to me if you'd like to do this.
 \end{frame}
 
-\begin{frame}{Installing Python (Anaconda)}
-    \begin{enumerate}
-        \item Visit the following website in your internet browser: https://docs.anaconda.com/miniconda/miniconda-install/
-        \item Follow the instructions relevant to your operating system (Windows or Mac)
-        \begin{itemize}
-            \item Remember (e.g. write down) the key steps to run the anaconda program once it's been installed. You'll need to run this program every time you want to run and/or edit any Python scripts. I'll refer to this program as the "command line".
-            \item Windows: Start Menu \textgreater\ Anaconda Prompt
-            \item Mac: Terminal Application (e.g. Command + Space \textgreater\ Terminal)
-        \end{itemize}
-        \item Copy and Paste these commands into the command line to install all the packages we'll need for this course (click "Enter" between commands).
-        \begin{itemize}
-            \item conda install -c conda-forge jupyterlab
-            \item conda install numpy
-            \item conda install conda-forge::matplotlib
-            \item conda install -c conda-forge pyomo
-            \item conda install anaconda::pandas
-        \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}{Writing Your First Python Code}
+\begin{frame}{Introduction to Google Colab.}
     \begin{itemize}
-        \item Python commands can be executed in bug batches (called scripts) or one-by-one from the command line.
-        \item We'll cover your to write scripts later
-        \item For now, in the command line, type "python" followed by Enter.
-        \item You'll notice that the command line looks like it's changed. You should now see three '\textgreater\textgreater\textgreater' characters followed by a blinking block. This is the "Python shell" anything you type here will be executed as a Python command.
-        \item The easiest Python command to write is as follows. Type this command and click Enter.
-        \begin{itemize}
-            \item print("Hello World")
-        \end{itemize}
-        \item You should see "Hello World" repeated back to you. The "print" command tells Python to print whatever you tell it to your screen. In this case, we told Python to print the message "Hello World".
-        \item To exit out of the Python shell, type "quit()" followed by Enter.
-        \item This should return you to the normal command line.
+        \item Google Colab is a nice program that has a graphical user interface that lets you see your Python code, it's output, and several other useful options all in an organized way.
+        \item This interface is called a "Notebook".
+        \item To launch the Google Colab notebook for today's class, please Lecture 2 folder of the course website. There, there should be an "Open in Colab" button to pull up the notebook.
     \end{itemize}
-\end{frame}
 
-\begin{frame}{Introduction to Jupyter Lab}
-    \begin{itemize}
-        \item Typing commands like this one by one into the Python shell can get really tedious.
-        \item Jupyter Lab is a nice program that has a graphical user interface that lets you see your Python code, it's output, and several other useful options all in an organized way.
-        \item We installed Jupyter Lab a couple of slides ago using Anaconda.
-        \item To launch Jupyter Lab, type "jupyter-lab" followed by Enter.
-        \begin{itemize}
-            \item It may ask you which internet browser you'd like to use, or it may prompt you to copy and paste a URL into your internet browser. Unless an internet browser tab automatically opens up, follow the instructions that get written to the screen.
-        \end{itemize}
-        \item Jupyter Lab organizes your python code and it's output into one concise file called a "Notebook". Notebooks are nice since they allow you to combine Python code, written text, images, etc. all in one place.
-    \end{itemize}
-\end{frame}
+    \begin{center}
+        Course Website:
 
-\begin{frame}{Opening up Lecture Materials}
-    \begin{itemize}
-        \item To download all the Jupter Notebooks we'll use for the rest of the course, follow these instructions.
-        \item Go to the course website: https://github.com/NathanDavisBarrett/ComputationalDecisionMakingCourse
-        \item Click on the green "\textless\textgreater\ Code" Button.
-        \item Click on Download ZIP from the dropdown menu that appears.
-        \item Open up the file that is downloaded and extract the "ComputationalDecisionMakingCourse" folder to somewhere on your computer that you'd like to store it.
-        \item Back in Jupyter Lab, there should be a file navigation bar on the right-hand side of the internet browser tab. Use this file navigation bar to navigate to the ComputationalDecisionMakingCourse folder you just extracted.
-        \item Open up the 02\_PythonCrashCourse folder and double-click on the "Lecture\_02\_Notebook.ipynb" file. This should open the Jupyter Notebook we'll use for the rest of today.
-    \end{itemize}
+        https://github.com/NathanDavisBarrett/ComputationalDecisionMakingCourse
+
+        \vspace{0.5cm}
+        Go to the Lecture 02 folder and look for this button:
+    \end{center}
+
+    \begin{figure}
+        \includegraphics[width=0.2\linewidth]{OpenInGoogleColab.png}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Python: Basic Arithmetic}
@@ -542,26 +504,14 @@
 \end{frame}
 
 \begin{frame}{Next Class}
-    \begin{itemize}
-        \item The Pyomo Python Package
-        \begin{itemize}
-            \item This is the Python package that lets you type in mathematical models (like what we made last class) in almost the same syntax.
-            \item Then, using the Pyomo Package, you can have the computer find the optimal solution of those models.
-        \end{itemize}
-        \item \textbf{Please install "SCIP" in preparation for next class:}
-        \begin{enumerate}
-            \item Visit https://www.scipopt.org/index.php\#download
-            \item Select your operating system (OS) (Windows or Mac)
-            \item Scroll down slightly to "Precompiled Packages"
-            \item There should be a highlighted blue link starting with "SCIPOptSuite-..."
-            \item Click that link to download the SCIP solver.
-            \item Double-click the downloaded file to install the SCIP solver. Follow the instructions that pop up to finish the installation.
-        \end{enumerate}
-    \end{itemize}
+    \begin{center}
+        PLEASE DON'T FORGET TO BRING YOUR LAPTOPS TO CLASS!
 
-    \vspace{1cm}
+        \vspace{1cm}
 
-    \textit{Again, Today's class might have felt like a firehose. Don't worry if you don't perfectly grasp everything today. You'll have plenty of time to practice as we move forward.}
+        \textit{Again, Today's class might have felt like a firehose. Don't worry if you don't perfectly grasp everything today. You'll have plenty of time to practice as we move forward.}
+    \end{center}
+    
 
 \end{frame}
 

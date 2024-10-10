@@ -108,9 +108,9 @@
 
 \begin{frame}{Introduction to Pyomo}
     \begin{center}
-        \textit{Before we jump in, please open up the Jupyter Notebook for today:}
-    
-        \textit{03\_MathematicalModelingWithPyomo/Lecture\_03\_Notebook.ipynb}
+        \textit{Before we jump in, please open up the Google Colab Notebook for today.}
+
+        \textit{Course Website: https://github.com/NathanDavisBarrett/ComputationalDecisionMakingCourse}
     \end{center}
 
     \begin{itemize}
@@ -157,7 +157,7 @@
         \hspace{0.25cm} model.mySet = pyo.Set(initialize=[\_\_elements\_\_])
 
         \item Notice how "mySet" is defined as part of the "model" object.
-        \item Example: See Jupyter Notebook
+        \item Example: See Google Colab Notebook
     \end{itemize}
 
     \begin{center}
@@ -170,7 +170,7 @@
         \item Recall from Lecture 01 that parameters are simply pre-specified constant numbers.
         \item Pyomo does not have an explicit representation of these parameters.
         \item Instead, the value of each parameter is stored and communicated to Pyomo using regular Python variables.
-        \item Examples: See Jupyter Notebook
+        \item Examples: See Google Colab Notebook
     \end{itemize}
     \begin{center}
         $\delta_r \rightarrow $ delta = \{"AB": 15, "AC": 5, "BC": 4, ...\}
@@ -191,7 +191,7 @@
         
         \hspace{0.25cm} model.myVar[myIndex]
 
-        \item Example: See Jupyter Notebook
+        \item Example: See Google Colab Notebook
     \end{itemize}
     \begin{center}
         $$X_r \ \ \forall r \in \textbf{R} \left(\textbf{Binary\ Variable}\right) \rightarrow $$ model.X = pyo.Var(model.R,domain=pyo.Binary)
@@ -213,7 +213,7 @@
 
             \item Pyomo will then call the function ("myFunction") again and again for each element in the set ("mySet") and store the resulting relation in the constraint object ("myConstr").
         \end{enumerate}
-        \item Example: See Jupyter Notebook
+        \item Example: See Google Colab Notebook
     \end{itemize}
 \end{frame}
 
@@ -231,7 +231,7 @@
         \item Note that since there are often lots of decision variables you want to vary, Pyomo assumes you want to vary all of the decision variables that you've defined using model.myVar = pyo.Var(...). Because of that you do not need to re-mention them here.
         \item Here "mySense" is just "maximize" or "minimize" depending on what you want to do.
         \item As with all Pyomo objects, notice how "myObj" is defined as part of the "model" object.
-        \item Example: See Jupyter Notebook
+        \item Example: See Google Colab Notebook
     \end{itemize}
 
     \begin{center}
@@ -297,7 +297,7 @@
 
         \vspace{1 cm}
 
-        Please open up the Jupyter Notebook for Lecture 03.
+        Please open up the Google Colab Notebook for Lecture 03.
     \end{center}
     
 \end{frame}
@@ -326,7 +326,7 @@
             \item \textbf{ExtractResults Function}: Next define a function called "ExtractResults" that takes in a full assembled and optimized Pyomo ConcreteModel object and extracts the results from that object to a format you'd like (generally excel or a plot).
             \item \textbf{Main Function}: Finally, define a function called "main" that takes no arguments but first defines a Parameters object, uses this Parameters object to assemble a Pyomo Model (using AssembleModel). Then pass this assembled model to ExecuteOptimization, and extract the results using ExtractResults.
         \end{itemize}
-        \item Let's see how this looks for the Route Planning model we've already made (See Jupyter Notebook).
+        \item Let's see how this looks for the Route Planning model we've already made (See Google Colab Notebook).
     \end{itemize}
 \end{frame}
 
