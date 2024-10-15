@@ -8,3 +8,8 @@
 *.bbl
 *.exe
 **/.ipynb_checkpoints/
+*.png
+*.jpeg
+*.jpg
+*.xlsx
+*.pyc
