@@ -142,7 +142,7 @@
 \begin{frame}{General Form of an Optimization Problem}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            $$\min_{\overline{X}} f(\overline{X})$$
+            $$\min f(\overline{X})$$
             $$---\ subject\ to\ (s.t.)\ ---$$
             $$\overline{X} \in \textbf{S}$$
             \vspace{1cm}
@@ -181,7 +181,7 @@
             \end{center}
         \end{column}
         \begin{column}[t]{0.5\textwidth}
-            $$\min_{\overline{X}} f(\overline{X})$$
+            $$\min f(\overline{X})$$
             $$s.t.\ \overline{X} \in \textbf{S}$$
             \vspace{1cm}
             \begin{itemize}
@@ -214,7 +214,6 @@
         \begin{column}[t]{0.5\textwidth}
             In order how I would write / code them:
             \begin{enumerate}
-                \item Sets
                 \item Parameters ($\overline{\alpha}$)
                 \item Decision Variables ($\overline{X}$)
                 \item Constraints ($\textbf{S}$)
@@ -320,46 +319,6 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Sets}
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \begin{itemize}
-                \item Often there are several variables, parameters, constraints, etc. that are repeated for a given set of values.
-                \item We can write the general idea behind that variable, parameter, constraint, etc. by simply writing it once and indicating that it should be repeated for every element in a set.
-                \item In math, it looks like this:
-            \end{itemize}
-            $$\forall e \in \textbf{E}$$
-            $$"\text{for all elements } e \text{ in the set } \textbf{E}"$$
-            \begin{itemize}
-                \item Some variables, parameters, constraints, etc. can be defined over multiple sets:
-            \end{itemize}
-            $$\forall c \in \textbf{C}, t \in \textbf{T}$$
-        \end{column}
-        \begin{column}{0.5\textwidth}
-            Examples:
-            \begin{itemize}
-                \item A set of all time periods
-                \begin{itemize}
-                    \item An individual variable must be defined for each time period
-                \end{itemize}
-                \item A set of all budget categories
-                \begin{itemize}
-                    \item A spending limit constraint must be specified for each budget category
-                \end{itemize}
-                \item A set of all tasks that need to be done
-                \begin{itemize}
-                    \item A parameter specifying the time it takes to perform each task must be specified for each task
-                \end{itemize}
-                \item Variables belonging to multiple sets:
-                \begin{itemize}
-                    \item An budget allotment variable must be defined for each budget category $c \in \textbf{C}$ for each time period $t \in \textbf{T}$.
-                    \item We'll call this variable "$A_{c,t}$"
-                \end{itemize}
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
 \begin{frame}{A Visual Example (Linear)}
     %Do a 2-d visual example (maybe one linear and one non-linear)
     \begin{columns}
@@ -369,7 +328,7 @@
             \end{figure}
         \end{column}
         \begin{column}{0.5\textwidth}
-            $$\max_{X,Y} X + 3Y - 0.5$$
+            $$\max X + 3Y - 0.5$$
             $$s.t. \ \ \ X\geq 0$$
             $$Y \geq 0$$
             $$X \leq 3.5$$
@@ -388,7 +347,7 @@
             \end{figure}
         \end{column}
         \begin{column}{0.5\textwidth}
-            $$\max_{X,Y} f(X,Y)$$
+            $$\max f(X,Y)$$
             $$s.t. \ \ \ X\geq 0$$
             $$Y \geq 0$$
             $$X \leq 3.5$$
@@ -398,8 +357,8 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}[t]{Example: Classic Economics Problem}
-    \textit{Jack and Jill find themselves on an abandoned island and need food and shelter. Jack can either build 5 shingles per hour or can catch 2 fish per hour. Jill can either build 9 shingles per hour or can catch 3 fish per hour. They only need 25 shingles but would welcome as much fish as they can get. They each have 8 hours to work in a day. What's the best way they can spend their time to maximize the amount of food and shelter (equally prioritized)?}
+\begin{frame}[t]{Example: Etsy Shop Problem}
+    \textit{Jack and Jill own an Etsy shop that sells t-shirts and wooden sculptures. Jack can either make 5 t-shirts per hour or he can make 2 sculptures per hour. Jill can either make 9 t-shirts per hour or she can make 3 sculptures per hour. Their most recent order indicates that they only need 25 t-shirts but would welcome as many sculptures as they can create. They each how 8 hours to work today. How should they spend their time today so that they can maximize the total number of t-shirts and sculptures they make?}
 
     \vspace{1.0cm}
     
@@ -412,12 +371,12 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Example: Classic Economics Problem}
+\begin{frame}{Example: Etsy Shop Problem}
     \textbf{First conceptualize the problem:}
     \begin{columns}[t]
         \begin{column}[t]{0.5\textwidth}
             \begin{itemize}
-                \item Objective: Maximize the number of products produced according so some priority scheme
+                \item Objective: Maximize the total number of products produced
                 \item Variables: 
                 \begin{itemize}
                     \item How many hours each person spends on producing each product
@@ -428,7 +387,7 @@
                 \begin{itemize}
                     \item How much product can be made by each person per hour
                     \item How must time there is in a day
-                    \item The number of shingles they need
+                    \item The number of t-shirts they need
                     \item The priority between each product
                 \end{itemize}
             \end{itemize}
@@ -439,100 +398,202 @@
                 \begin{itemize}
                     \item Each person can only work between 0 and 8 hours in a day
                     \item The amount of each product produced should be directly determined by how many hours each person spends making that product
-                    \item The number of shingles should be limited to 25
-                \end{itemize}
-                \item Sets:
-                \begin{itemize}
-                    \item A set of all people involved
-                    \item A set of all products involved
+                    \item The number of t-shirts should be limited to 25
                 \end{itemize}
             \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}[t]{Example: Classic Economics Problem}
-    \textbf{Then write the problem using mathematical modeling:}
+\begin{frame}[t]{Example: Etsy Shop Problem}
+    \textbf{Let's write the problem using mathematical modeling:}
     \begin{columns}[t]
         \begin{column}[t]{0.5\textwidth}
             \begin{enumerate}
-                \item Define Sets:
-                \begin{itemize}
-                    \item $p \in \textbf{P} = \{Jack, Jill\}$: A set of all people involved
-                    \item $r \in \textbf{R} = \{Shingles, Fish\}$: A set of all products involved
-                \end{itemize}
                 \item Define Parameters:
                 \begin{itemize}
-                    \item $\alpha_{p,r}$: How much product can be made by each person per hour
-                    \begin{center}
-                        \begin{tabular}{|c||c|c|}
-                            \hline
-                            $\alpha_{p,r}$ & $Jack$ & $Jill$ \\ 
-                            \hline \hline
-                            $Shingles$ & 5 & 9 \\  
-                            \hline
-                            $Fish$ & 2 & 3\\
-                            \hline  
-                        \end{tabular}
-                    \end{center}
+                    \item How much product can be made by each person per hour
+                    \begin{itemize}
+                        \item $\alpha_{Jack,Sculptures} = 2$
+                        \item $\alpha_{Jack,Shirts} = 5$
+                        \item $\alpha_{Jill,Sculptures} = 3$
+                        \item $\alpha_{Jill,Shirts} = 9$
+                    \end{itemize}
                     \item $\tau^{DAY} = 8$: How much time there is to work in a day
-                    \item $\kappa = 25$: The number of shingles they need
-                    
+                    \item $\kappa = 25$: The number of t-shirts they need
                 \end{itemize}
             \end{enumerate}
         \end{column}
         \begin{column}[t]{0.5\textwidth}
             \begin{enumerate}
                 \setcounter{enumi}{1}
-                \item Parameters (cont.):
-                \begin{itemize}
-                    \item $\rho_{r} = 1$: The priority between each product
-                \end{itemize}
                 \item Define Decision Variables:
                 \begin{itemize}
-                    \item $H_{p,r} \ \  \forall p \in \textbf{P}, r \in \text{R}$: The number of hours each person should spend making each product in a day
-                    \item $N_{r} \ \ \forall r \in \textbf{R}$: The amount of each product that gets made
-                \end{itemize}
-                \item Define Constraints:
-                \begin{itemize}
-                    \item Each person can only work between 0 and 8 hours in a day
-                    $$0 \leq \sum_{r \in \textbf{R}} H_{p,r} \leq \tau^{DAY} \ \ \forall p \in \textbf{P}$$
+                    \item The number of hours each person should spend making each product in a day
+                    \begin{itemize}
+                        \item $H_{Jack,Sculptures}$
+                        \item $H_{Jack,Shirts}$
+                        \item $H_{Jill,Sculptures}$
+                        \item $H_{Jill,Shirts}$
+                    \end{itemize}
+                    \item The amount of each product that gets made
+                    \begin{itemize}
+                        \item $N_{Sculptures}$
+                        \item $N_{Shirts}$
+                    \end{itemize}
                 \end{itemize}
             \end{enumerate}
         \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}{Example: Classic Economics Problem}
+\begin{frame}{Example: Etsy Shop Problem}
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item Constraints:
+        \begin{itemize}
+            \item Each person can only work between 0 and 8 hours in a day:
+            $$0 \leq H_{Jack,Sculptures} + H_{Jack,Shirts} \leq \tau^{DAY}$$
+            $$0 \leq H_{Jill,Sculptures} + H_{Jill,Shirts} \leq \tau^{DAY}$$
+            \item The amount of each product produced should be directly determined by how many hours each person spends making that product:
+            $$N_{Sculptures} = \alpha_{Jack,Sculptures} H_{Jack,Sculptures} + \alpha_{Jill,Sculptures} H_{Jack,Sculptures}$$
+            \begin{equation}
+                \begin{split}
+                    N_{Shirts} = \alpha_{Jack,Shirts} H_{Jack,Shirts} + \alpha_{Jill,Shirts} H_{Jack,Shirts}
+                \end{split}
+                \tag*{}
+            \end{equation}
+            \item The number of shirts should be limited to 25:
+            $$N_{Shirts} = \kappa$$
+        \end{itemize}
+        \setcounter{enumi}{3}
+        \item Define Objective:
+        \begin{itemize}
+            \item Maximize the total number of products produced
+            $$\max N_{Shirts} + N_{Sculptures}$$
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Example: Etsy Shop Problem}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \begin{center}
+                \textbf{FULL FORMULATION}
+        
+                $$\max N_{Shirts} + N_{Sculptures}$$
+                $$---\ subject\ to\ (s.t.)\ ---$$
+                $$0 \leq H_{Jack,Sculptures} + H_{Jack,Shirts} \leq \tau^{DAY}$$
+                $$0 \leq H_{Jill,Sculptures} + H_{Jill,Shirts} \leq \tau^{DAY}$$
+                $$N_{Shirts} = \alpha_{Jack,Shirts} H_{Jack,Shirts} + \alpha_{Jill,Shirts} H_{Jack,Shirts}$$
+                \begin{equation}
+                    \begin{split}
+                        N_{Sculptures} = \alpha_{Jack,Sculptures} H_{Jack,Sculptures} \\ + \alpha_{Jill,Sculptures} H_{Jack,Sculptures}
+                    \end{split}
+                    \tag*{}
+                \end{equation}
+                $$N_{Shirts} = \kappa$$
+            \end{center}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{itemize}
+                \item Notice how much repetition there is.
+                \item How could I change this problem if I had 1000 people and 75 products?
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}{Sets}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \vspace{-0.2cm}
-            \begin{enumerate}
-                \setcounter{enumi}{3}
-                \item Constraints (cont.):
-                \begin{itemize}
-                    \item The amount of each product produced should be directly determined by how many hours each person spends making that product
-                    $$N_r = \sum_{p \in \textbf{P}} \alpha_{p,r}H_{p,r} \ \ \forall r \in \textbf{R}$$
-                    \item The number of shingles should be limited to 25
-                    $$N_{Shingles} = \kappa$$
-                \end{itemize}
-
-                \item Define Objective:
-                \begin{itemize}
-                    \item Maximize the number of products produced according so some priority scheme
-                    $$\max \sum_{r \in \textbf{R}} \rho_r N_r$$
-                \end{itemize}
-
-            \end{enumerate}
+            \begin{itemize}
+                \item Often there are several variables, parameters, constraints, etc. that are repeated for a given set of values.
+                \item We can write the general idea behind that variable, parameter, constraint, etc. by simply writing it once and indicating that it should be repeated for every element in a set.
+                \item In math, it looks like this:
+            \end{itemize}
+            $$\forall e \in \textbf{E}$$
+            $$"\text{for all elements } e \text{ in the set } \textbf{E}"$$
         \end{column}
         \begin{column}{0.5\textwidth}
-            $$---\text{ FULL FORMULATION }---$$
-            $$\max_{H_{p,r},N_r} \sum_{r \in \textbf{R}} \rho_r N_r$$
-            $$s.t.\ \ \ 0 \leq \sum_{r \in \textbf{R}} H_{p,r} \leq \tau^{DAY} \ \ \forall p \in \textbf{P}$$
-            $$N_r = \sum_{p \in \textbf{P}} \alpha_{p,r}H_{p,r} \ \ \forall r \in \textbf{R}$$
-            $$N_{Shingles} = \kappa$$
+            $$0 \leq H_{Jack,Sculptures} + H_{Jack,Shirts} \leq \tau^{DAY}$$
+            $$0 \leq H_{Jill,Sculptures} + H_{Jill,Shirts} \leq \tau^{DAY}$$
+            $$\downarrow$$
+            $$0 \leq H_{p,Sculptures} + H_{p,Shirts} \leq \tau^{DAY} \ \ \forall p \in \textbf{P}$$
+            $$\downarrow$$
+            $$0 \leq \sum_{r \in \textbf{R}} H_{p,r} \leq \tau^{DAY} \ \ \forall p \in \textbf{P}$$
+            \vspace{0.5cm}
+            $$p\in\textbf{P}:\text{ A set of all People}$$
+            $$r\in\textbf{R}:\text{ A set of all Products}$$
+        \end{column}
+    \end{columns}
+\end{frame}
 
-            \footnotetext{* Notice how the objective and all constraints are linear}
+\begin{frame}{Sets}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            $$\alpha_{Jack,Sculptures} = 2$$
+            $$\alpha_{Jack,Shirts} = 5$$
+            $$\alpha_{Jill,Sculptures} = 3$$
+            $$\alpha_{Jill,Shirts} = 9$$
+            $$\downarrow$$
+            $$\alpha_{p,r} \ \ \forall p \in \textbf{P}, r \in \textbf{R}$$
+            \begin{center}
+                \begin{tabular}{|c||c|c|}
+                    \hline
+                    $\alpha_{p,r}$ & $Jack$ & $Jill$ \\ 
+                    \hline \hline
+                    $Shirts$ & 5 & 9 \\  
+                    \hline
+                    $Sculptures$ & 2 & 3\\
+                    \hline  
+                \end{tabular}
+            \end{center}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            $$N_{Shirts} = \alpha_{Jack,Shirts} H_{Jack,Shirts} + \alpha_{Jill,Shirts} H_{Jack,Shirts}$$
+            \begin{equation}
+                \begin{split}
+                    N_{Sculptures} = \alpha_{Jack,Sculptures} H_{Jack,Sculptures} \\ + \alpha_{Jill,Sculptures} H_{Jack,Sculptures}
+                \end{split}
+                \tag*{}
+            \end{equation}
+            $$\downarrow$$
+            $$N_{r} = \alpha_{Jack,r} H_{Jack,r} + \alpha_{Jill,r} H_{Jack,r}\ \ \ \forall r \in \textbf{R}$$
+            $$\downarrow$$
+            $$N_{r} = \sum_{p \in \textbf{P}} \alpha_{p,r} H_{p,r}\ \ \ \forall r \in \textbf{R}$$
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[t]{Example: Etsy Shop Problem with Sets}
+    \begin{columns}[t]
+        \begin{column}[t]{0.5\textwidth}
+            $$\max N_{Shirts} + N_{Sculptures}$$
+            $$---\ subject\ to\ (s.t.)\ ---$$
+            $$0 \leq H_{Jack,Sculptures} + H_{Jack,Shirts} \leq \tau^{DAY}$$
+            $$0 \leq H_{Jill,Sculptures} + H_{Jill,Shirts} \leq \tau^{DAY}$$
+            $$N_{Shirts} = \alpha_{Jack,Shirts} H_{Jack,Shirts} + \alpha_{Jill,Shirts} H_{Jack,Shirts}$$
+            \begin{equation}
+                \begin{split}
+                    N_{Sculptures} = \alpha_{Jack,Sculptures} H_{Jack,Sculptures} \\ + \alpha_{Jill,Sculptures} H_{Jack,Sculptures}
+                \end{split}
+                \tag*{}
+            \end{equation}
+            $$N_{Shirts} = \kappa$$
+        \end{column}
+        \begin{column}[t]{0.5\textwidth}
+            $$\max \sum_{r\in\textbf{R}} N_{r}$$
+            $$---\ subject\ to\ (s.t.)\ ---$$
+            $$0 \leq \sum_{r \in \textbf{R}} H_{p,r} \leq \tau^{DAY} \ \ \forall p \in \textbf{P}$$
+            $$N_{r} = \sum_{p \in \textbf{P}} \alpha_{p,r} H_{p,r}\ \ \ \forall r \in \textbf{R}$$
+            $$N_{Shirts} = \kappa$$
+
+            \vspace{0.7cm}
+            \begin{center}
+                \textbf{This one can handle any number of people or products.}
+            \end{center}
         \end{column}
     \end{columns}
 \end{frame}
