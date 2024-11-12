@@ -13,3 +13,5 @@
 *.jpg
 *.xlsx
 *.pyc
+
+!*RoutePlanningProblem*.png
