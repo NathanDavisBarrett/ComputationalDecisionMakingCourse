@@ -27,7 +27,7 @@
 
 \title{Computational Decision Making for Regular People}
 \subtitle{03: Math Modeling With Pyomo}
-\date{October 29, 2024}
+\date{November 12, 2024}
 
 \usepackage[font=tiny,labelfont=bf]{caption}
 \usepackage{caption}
@@ -46,7 +46,7 @@
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{enumerate}
-                \item Refresher on Math Modeling (Route Planning Problem)
+                \item Refresher on Math Modeling (Etsy Shop Problem)
                 \item Introduction to Pyomo
                 \begin{itemize}
                     \item The Pyomo "ConcreteModel"
@@ -75,35 +75,19 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Refresher on Math Modeling}
-    \textit{Given the roads indicated in the graph below, what's the fastest way to get from point A to point D?}
-
-    \vspace{1.0cm}
-    
+\begin{frame}{Refresher on Math Modeling}    
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \begin{enumerate}
-                \item Objective Function ($f(\overline{X}$))
-                \item Decision Variables ($\overline{X}$)
-                \item Parameters ($\overline{\alpha}$)
-                \item Constraints ($\textbf{S}$)
-            \end{enumerate}
+            \textit{Jack and Jill own an Etsy shop that sells t-shirts and wooden sculptures. Jack can either make 5 t-shirts per hour or he can make 2 sculptures per hour. Jill can either make 9 t-shirts per hour or she can make 3 sculptures per hour. Their most recent order indicates that they only need 25 t-shirts but would welcome as many sculptures as they can create. They each how 8 hours to work today. How should they spend their time today so that they can maximize the total number of t-shirts and sculptures they make?}
         \end{column}
         \begin{column}{0.5\textwidth}
-            \begin{figure}
-                \includegraphics[width=\linewidth]{../01_Introduction/RoutePlanningProblem.png}
-            \end{figure}
+            $$\max \sum_{r\in\textbf{R}} N_{r}$$
+            $$---\ subject\ to\ (s.t.)\ ---$$
+            $$0 \leq \sum_{r \in \textbf{R}} H_{p,r} \leq \tau^{DAY} \ \ \forall p \in \textbf{P}$$
+            $$N_{r} = \sum_{p \in \textbf{P}} \alpha_{p,r} H_{p,r}\ \ \ \forall r \in \textbf{R}$$
+            $$N_{Shirts} = \kappa$$
         \end{column}
     \end{columns}
-\end{frame}
-
-\begin{frame}{Refresher on Math Modeling}
-    $$---\text{ FULL FORMULATION }---$$
-    $$\min_{X_r,Y_p} \sum_{r \in \textbf{R}} \delta_r X_r$$
-    $$s.t.\ \ \ \sum_{r \in \textbf{R}_p} X_r = 2 Y_p \ \ \ \forall p \in \textbf{P}^{NON-TERM}$$
-    $$\sum_{r \in \textbf{R}_p} X_r = Y_p \ \ \ \forall p \in \textbf{P}^{TERM}$$
-    $$Y_p = 1 \ \ \ \forall p \in \textbf{P}^{TERM}$$
-    $$X_r, Y_p \in \{0,1\}$$
 \end{frame}
 
 \begin{frame}{Introduction to Pyomo}
@@ -173,7 +157,7 @@
         \item Examples: See Google Colab Notebook
     \end{itemize}
     \begin{center}
-        $\delta_r \rightarrow $ delta = \{"AB": 15, "AC": 5, "BC": 4, ...\}
+        $\alpha_{p,r} \rightarrow $ alpha = \{"Jack": \{"Shirts": 5, "Sculptures": 2\}, "Jill": \{...\}\}
     \end{center}
 \end{frame}
 
@@ -221,7 +205,7 @@
     \begin{itemize}
         \item Recall in Lecture 01 that an objective is 1) a mathematical expression, 2) an indication of which decision variables to vary, and 3) an associated "max" or "min" keyword:
         
-        $$\max_{X_r,Y_p} \sum_{r \in \textbf{R}}\delta_r X_r$$
+        $$\max \sum_{r \in \textbf{R}}N_r$$
 
         \item Pyomo has an "Objective" object that represents this objective.
         \item Pyomo "Objective" objects are defined like this:
@@ -235,9 +219,9 @@
     \end{itemize}
 
     \begin{center}
-        $\max_{X_r,Y_p} \sum_{r \in \textbf{R}}\delta_r X_r \rightarrow$ 
+        $\max \sum_{r \in \textbf{R}} N_r \rightarrow$ 
         
-        model.myObj = pyo.Objective(expr=sum(delta[r] * model.X[r] for r in model.R),sense=pyo.maximize) 
+        model.myObj = pyo.Objective(expr=sum(model.N[r] for r in model.R),sense=pyo.maximize) 
     \end{center}
 \end{frame}
 
@@ -250,7 +234,7 @@
         \item Other solvers are free (but considerably slower). Those solvers should be suitable for what we'll do in this class.
         \item Each solver is limited to a certain style of problem: Linear, Quadratic, Mixed-Integer (Binary), Generic Nonlinear, etc.
         \item Most of the problems we'll do in this class are "Mixed-Integer Linear" or "Mixed-Integer Non-Linear". So we'll use the free "SCIP"\footnote{https://www.scipopt.org/} solver for what we do in this class.
-        \item If you followed the instructions at the end of Lecture 2, the SCIP solver should already be installed. If not, please visit https://www.scipopt.org/index.php\#download
+        \item The first few blocks of code for this notebook install the SCIP solver for us.
     \end{itemize}
 \end{frame}
 
@@ -300,34 +284,6 @@
         Please open up the Google Colab Notebook for Lecture 03.
     \end{center}
     
-\end{frame}
-
-\begin{frame}{The Single Responsibility Principle}
-    \begin{center}
-        There is a notion in the world of software developers that
-
-        \textbf{Every function, script, data structure, etc. should have one single Responsibility.}
-    \end{center}
-    \begin{itemize}
-        \item There are a lot of things to go on in constructing, solving, and interpreting mathematical models.
-        \item Having them all jammed into one Python script can make your code hard to read and more prone to errors.
-        \item I highly recommend breaking each part of this process into it's own function or script.
-        \item One huge advantage of doing this is that if, down the road, you need to run just a small potion of your code, you can just call that one function or script instead of re-running the whole thing or trying to copy and paste pieces of your code that might not work if taken out of context.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{My Recommended Pyomo Workflow}
-    \begin{itemize}
-        \item In order to make my code clean and easy to read, I break up my code like this:
-        \begin{itemize}
-            \item \textbf{Parameters Class}: First define a custom data type (a.k.a. Class) called "Parameters" that houses all the parameters needed to assemble an instance of a model.
-            \item \textbf{AssembleModel Function}: Next define a function called "AssembleModel" that takes in a Parameters object and assembles a Pyomo ConcreteModel object equipped with all sets, variables, constraints, and objective defined. It should then return this model object.
-            \item \textbf{ExecuteOptimization Function}: Next define a function called "ExecuteOptimization" that takes in a fully assembled Pyomo ConcreteModel object and executes the optimization of this model (e.g. creates a Solver object and calls solver.solve)
-            \item \textbf{ExtractResults Function}: Next define a function called "ExtractResults" that takes in a full assembled and optimized Pyomo ConcreteModel object and extracts the results from that object to a format you'd like (generally excel or a plot).
-            \item \textbf{Main Function}: Finally, define a function called "main" that takes no arguments but first defines a Parameters object, uses this Parameters object to assemble a Pyomo Model (using AssembleModel). Then pass this assembled model to ExecuteOptimization, and extract the results using ExtractResults.
-        \end{itemize}
-        \item Let's see how this looks for the Route Planning model we've already made (See Google Colab Notebook).
-    \end{itemize}
 \end{frame}
 
 \begin{frame}{Infeasible? Unbounded?}
