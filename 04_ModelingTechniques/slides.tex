@@ -624,7 +624,7 @@
                 \item $\omega_t$: The amount of money I'll need to withdraw in month $t$
                 \begin{itemize}
                     \item I just ask ChatGPT: \enquote{I have an initial quantity of money that will increase with inflation. I know the yearly inflation rate is 2\%. Please give a formula for that this quantity will be "t" months from now.}
-                    $$\omega_t = \$5,000 \times (1 + \frac{0.02}{12})^t$$
+                    $$\omega_t = \$8,000 \times (1 + \frac{0.02}{12})^t$$
                 \end{itemize}
             \end{itemize}
         \end{column}
@@ -710,7 +710,7 @@
                 \item Finally, another way to get really big ending balances would be to have negative withdrawals. Is this allowed?
                 \pause
                 \vspace{-0.3cm}
-                $$W_{a,t} \leq 0 \ \ \forall a \in \textbf{A}, t \in \textbf{T}$$
+                $$W_{a,t} \geq 0 \ \ \forall a \in \textbf{A}, t \in \textbf{T}$$
                 \item We can define this in Pyomo buy simply saying that $W_{a,t}$ is in the "NonNegativeReals" domain.
             \end{itemize}
         \end{column}
@@ -739,7 +739,7 @@
             \end{equation}
             $$\sum_{a \in \textbf{A}} \alpha_a W_{a,t} = \omega_t \ \ \forall t \in \textbf{T}$$
             $$B_{a,0} = \beta{a} \ \ \forall a \in \textbf{A}$$
-            $$W_{a,t} \leq 0 \ \ \forall a \in \textbf{A}, t \in \textbf{T}$$
+            $$W_{a,t} \geq 0 \ \ \forall a \in \textbf{A}, t \in \textbf{T}$$
             \begin{center}
                 \textit{This is your sticky note to have by when you code this model in Pyomo.}
             \end{center}
